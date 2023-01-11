@@ -7,6 +7,7 @@ export const Schema: SchemaType<Type> =  {
         query: Joi.object().keys({
             'sort': Joi.string().default('id').description('Ключ сортировки'),
             'sortKind': Joi.string().valid('ASC', 'DESC').insensitive().default('ASC').description('Тип сортировки'),
+            'id': Joi.number().positive().description('Идентификатор автомобиля'),
             'brand': Joi.string().min(1).max(255).description('Бренд автомобиля'),
             'name': Joi.string().min(1).max(255).description('Название автомобиля'),
             'prodYear': Joi.number().description('Год производства'),
