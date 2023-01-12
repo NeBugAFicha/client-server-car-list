@@ -1,7 +1,7 @@
-import {SchemaType, RouterType, ExtendedRequest, GenericObject} from './Types';
+import {SchemaType, RouterType, ExtendedRequest, GenericRoute} from './Types';
 import {NextFunction, Response} from 'express';
 
-export class Controller<T = GenericObject>{
+export class Controller<T extends GenericRoute>{
   readonly router: RouterType<T>;
   readonly schema: SchemaType<T>;
   constructor(router: RouterType<T>, schema: SchemaType<T>){

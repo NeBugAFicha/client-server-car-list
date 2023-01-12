@@ -25,6 +25,6 @@ export const Schema: SchemaType<Type> =  {
     delete: {
         params: Joi.object().keys({
             'id': Joi.number().positive().required().description('Идентификатор автомобиля'),
-        }),
+        }), 
     },
 }

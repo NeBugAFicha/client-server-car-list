@@ -11,7 +11,7 @@ export type Type = {
             name: string,
             prodYear: number,
             price: number
-        }
+        },
     },
     delete: {
         params: {
