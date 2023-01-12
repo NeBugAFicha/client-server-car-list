@@ -1,12 +1,17 @@
-## Как запустить приложение
+### Как запустить приложение
 
-- "client-server-car-list" -> "server"
+## Сервер (2 способа)
+# 1 способ (БД MongoDB (любой вариант, необходим только url подключения): локальная база, докер, mongo Atlas)
+- "client-server-car-list" -> "server" -> "src"
   - npm i
-  - БД MongoDB (любой вариант, необходим только url подключения): локальная база, докер, mongo Atlas
   - Переименовать .env.example в .env, и в файле заменить MONGO_URL на url подключения
   - npm run build
   - npm start
+# 2 способ с помощью Docker
+- "client-server-car-list" -> "server" -> "src"
+  - docker-compose up --build -d
 
+## Клиент
 - "client-server-car-list" -> "client"
   - npm i
   - Переименовать .env.example в .env
