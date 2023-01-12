@@ -1,10 +1,20 @@
 import {NextFunction, RequestHandler, Response} from 'express';
 import {ObjectSchema} from 'joi'
 
+
+export type RouteInterface<T = any> = {
+    body?: T;
+    params?: T;
+    query?: T;
+}
+
 export type GenericObject = {
   [key: string]: any
 }
 
+export type GenericRoute = {
+    [key: string]: RouteInterface<GenericObject>
+}
 export interface ExtendedRequest<
   ReqParam = GenericObject, 
   ReqBody = GenericObject, 
@@ -14,11 +24,6 @@ export interface ExtendedRequest<
   params: ReqParam;
   query: ReqQuery;
   handler: string,
-}
-export interface RouteInterface<T = any> {
-    body?: T;
-    params?: T;
-    query?: T;
 }
 
 export type RouteRequest<T extends RouteInterface> = ExtendedRequest<T['params'], T['body'], T['query']>; 
@@ -31,13 +36,11 @@ export type ControllerMethods<T> = {
     ) => Promise<void | GenericObject>;
 }
 
-export type SchemaType<T> = {
-    [key in keyof T]: {
-        [key2 in keyof T[key]]: ObjectSchema
-    };
+export type SchemaType<T extends GenericRoute> = {
+    [key in keyof T]: RouteInterface<ObjectSchema>;
 };
 
-export type RouterType<T> = {
+export type RouterType<T extends GenericRoute> = {
     generalPath: string, 
     routes: {
         [key in keyof T]: {
