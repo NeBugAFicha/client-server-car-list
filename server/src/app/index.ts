@@ -26,7 +26,7 @@ const {MONGO_URL, PORT, mongoOptions} = config;
 app.listen(PORT, async () => {
     try {
         mongoose.set('strictQuery', true);
-        mongoose.connect(MONGO_URL, mongoOptions);
+        await mongoose.connect(MONGO_URL, mongoOptions);
     } catch (err) {
         console.error('Server starting error:', {message: err.message});
         process.exit(1);
@@ -36,4 +36,5 @@ app.listen(PORT, async () => {
   
   process.on('uncaughtException', (error: Error) => {
       console.error('Uncaught Exception!', error.message);
+      process.exit(1);
   });
